@@ -1,0 +1,11 @@
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\bin\Debug\net8.0\PortfolioApp.Domain.deps.json
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\bin\Debug\net8.0\PortfolioApp.Domain.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\bin\Debug\net8.0\PortfolioApp.Domain.pdb
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.AssemblyInfoInputs.cache
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.AssemblyInfo.cs
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.csproj.CoreCompileInputs.cache
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\refint\PortfolioApp.Domain.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\PortfolioApp.Domain.pdb
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Domain\obj\Debug\net8.0\ref\PortfolioApp.Domain.dll

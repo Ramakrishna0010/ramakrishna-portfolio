@@ -1,0 +1,75 @@
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2>My Projects</h2>
+      <p>A showcase of my work across various technologies and domains</p>
+    </div>
+
+    <div class="filters">
+      <div class="search-box">
+        <input type="text" placeholder="🔍 Search projects..." [(ngModel)]="searchQuery" (input)="onSearch()" />
+      </div>
+      <div class="category-filters">
+        <button class="filter-btn" [class.active]="selectedCategory() === ''" (click)="onCategoryChange('')">All</button>
+        @for (cat of categories(); track cat) {
+          <button class="filter-btn" [class.active]="selectedCategory() === cat" (click)="onCategoryChange(cat)">{{ cat }}</button>
+        }
+      </div>
+    </div>
+
+    @if (loading()) {
+      <div class="loading-container"><div class="spinner"></div></div>
+    } @else {
+      <div class="projects-grid">
+        @for (project of projects(); track project.id) {
+          <div class="project-card glass-card">
+            <div class="project-thumb">
+              @if (project.thumbnailUrl) {
+                <img [src]="project.thumbnailUrl" [alt]="project.title" />
+              } @else {
+                <div class="thumb-placeholder">🚀</div>
+              }
+              <div class="project-overlay">
+                @if (project.gitHubUrl) {
+                  <a [href]="project.gitHubUrl" target="_blank" class="btn-ghost">GitHub</a>
+                }
+                @if (project.liveDemoUrl) {
+                  <a [href]="project.liveDemoUrl" target="_blank" class="btn-primary">Live Demo</a>
+                }
+              </div>
+              @if (project.isFeatured) {
+                <span class="featured-badge">⭐ Featured</span>
+              }
+            </div>
+            <div class="project-body">
+              <div class="project-meta">
+                <span class="badge badge-primary">{{ project.category }}</span>
+                <span class="badge" [class.badge-success]="project.status === 2" [class.badge-warning]="project.status === 1">{{ project.statusName }}</span>
+              </div>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.shortDescription }}</p>
+              <div class="tech-tags">
+                @for (tech of getTechs(project.technologyStack); track tech) {
+                  <span class="tag-chip">{{ tech }}</span>
+                }
+              </div>
+              <div class="project-footer">
+                <span class="duration">⏱ {{ project.duration }}</span>
+                <a [routerLink]="['/projects', project.slug]" class="read-more">Details →</a>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (totalPages > 1) {
+        <div class="pagination">
+          <button class="page-btn" [disabled]="currentPage() === 1" (click)="currentPage.set(currentPage() - 1); loadProjects()">← Prev</button>
+          <span class="page-info">{{ currentPage() }} / {{ totalPages }}</span>
+          <button class="page-btn" [disabled]="currentPage() === totalPages" (click)="currentPage.set(currentPage() + 1); loadProjects()">Next →</button>
+        </div>
+      }
+    }
+  </div>
+</section>

@@ -1,0 +1,119 @@
+<div class="admin-page">
+  <div class="page-header">
+    <h2>About Me</h2>
+    <p>Manage your personal information and bio</p>
+  </div>
+
+  @if (saved()) { <div class="alert-success">✅ Saved successfully!</div> }
+  @if (error()) { <div class="alert-error">{{ error() }}</div> }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="admin-form glass-card">
+    <div class="form-section">
+      <h3>Personal Info</h3>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" formControlName="fullName" />
+        </div>
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" formControlName="title" placeholder="Full Stack Developer" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subtitle</label>
+        <input type="text" formControlName="subtitle" />
+      </div>
+      <div class="form-group">
+        <label>Bio *</label>
+        <textarea formControlName="bio" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Short Bio</label>
+        <textarea formControlName="shortBio" rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Contact & Location</h3>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" formControlName="email" />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" formControlName="phone" />
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" formControlName="location" />
+        </div>
+        <div class="form-group">
+          <label>Nationality</label>
+          <input type="text" formControlName="nationality" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Languages</label>
+        <input type="text" formControlName="languages" placeholder="English, Hindi" />
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Images</h3>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Profile Image URL</label>
+          <input type="url" formControlName="profileImageUrl" />
+        </div>
+        <div class="form-group">
+          <label>Hero Image URL</label>
+          <input type="url" formControlName="heroImageUrl" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Stats</h3>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Years of Experience</label>
+          <input type="number" formControlName="yearsOfExperience" min="0" />
+        </div>
+        <div class="form-group">
+          <label>Projects Completed</label>
+          <input type="number" formControlName="projectsCompleted" min="0" />
+        </div>
+        <div class="form-group">
+          <label>Happy Clients</label>
+          <input type="number" formControlName="happyClients" min="0" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>Availability</h3>
+      <div class="form-row-2">
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" formControlName="isAvailableForWork" />
+            Available for Work
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Availability Status</label>
+          <input type="text" formControlName="availabilityStatus" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn-primary" [disabled]="loading()">
+        {{ loading() ? 'Saving...' : '💾 Save Changes' }}
+      </button>
+    </div>
+  </form>
+</div>

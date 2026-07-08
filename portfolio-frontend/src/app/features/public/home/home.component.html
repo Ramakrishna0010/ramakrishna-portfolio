@@ -1,0 +1,183 @@
+<!-- ─── HERO ─────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-particles">
+    @for (p of [1,2,3,4,5,6,7,8]; track p) {
+      <div class="particle" [style.animation-delay]="(p * 0.5) + 's'"></div>
+    }
+  </div>
+  <div class="container hero-content">
+    <div class="hero-text animate-fade-up">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        {{ about()?.availabilityStatus || 'Open to opportunities' }}
+      </div>
+      <h1>
+        Hi, I'm <span class="gradient-text">{{ about()?.fullName || 'Developer' }}</span>
+      </h1>
+      <h2 class="typed-wrapper">
+        <span class="typed-text">{{ typedText() }}</span><span class="cursor">|</span>
+      </h2>
+      <p class="hero-bio">{{ about()?.shortBio }}</p>
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn-primary">View My Work</a>
+        <a routerLink="/contact" class="btn-outline">Hire Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">{{ about()?.yearsOfExperience }}+</span>
+          <span class="stat-lbl">Years Exp.</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">{{ about()?.projectsCompleted }}+</span>
+          <span class="stat-lbl">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-num">{{ about()?.happyClients }}+</span>
+          <span class="stat-lbl">Clients</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image animate-float">
+      @if (about()?.profileImageUrl) {
+        <div class="image-wrapper">
+          <img [src]="about()!.profileImageUrl" [alt]="about()!.fullName" />
+          <div class="image-ring"></div>
+          <div class="image-ring ring-2"></div>
+        </div>
+      } @else {
+        <div class="image-placeholder">
+          <span>👨‍💻</span>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll Down</span>
+  </div>
+</section>
+
+<!-- ─── SKILLS PREVIEW ────────────────────────────────────────────────────── -->
+<section class="section skills-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Expertise</span>
+      <h2>Technical Skills</h2>
+      <p>Technologies I work with to build amazing products</p>
+    </div>
+    <div class="skills-grid">
+      @for (group of skillGroups(); track group.category) {
+        <div class="skill-group glass-card">
+          <h3 class="group-title">{{ group.category }}</h3>
+          <div class="skills-list">
+            @for (skill of group.skills.slice(0, 5); track skill.id) {
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-pct">{{ skill.percentage }}%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" [style.width]="skill.percentage + '%'"></div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+    <div class="section-cta">
+      <a routerLink="/skills" class="btn-outline">View All Skills</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURED PROJECTS ─────────────────────────────────────────────────── -->
+<section class="section projects-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2>Featured Projects</h2>
+      <p>Some of my best work that I'm proud of</p>
+    </div>
+    <div class="grid-3">
+      @for (project of featuredProjects(); track project.id) {
+        <div class="project-card glass-card">
+          <div class="project-thumb">
+            @if (project.thumbnailUrl) {
+              <img [src]="project.thumbnailUrl" [alt]="project.title" />
+            } @else {
+              <div class="thumb-placeholder">🚀</div>
+            }
+            <div class="project-overlay">
+              <a [href]="project.gitHubUrl" target="_blank" class="btn-ghost" *ngIf="project.gitHubUrl">GitHub</a>
+              <a [href]="project.liveDemoUrl" target="_blank" class="btn-primary" *ngIf="project.liveDemoUrl">Live Demo</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <span class="badge badge-primary">{{ project.category }}</span>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.shortDescription }}</p>
+            <div class="tech-tags">
+              @for (tech of getTechArray(project.technologyStack); track tech) {
+                <span class="tag-chip">{{ tech }}</span>
+              }
+            </div>
+            <a [routerLink]="['/projects', project.slug]" class="read-more">View Details →</a>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="section-cta">
+      <a routerLink="/projects" class="btn-primary">View All Projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ──────────────────────────────────────────────────────── -->
+@if (testimonials().length > 0) {
+  <section class="section testimonials-preview">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Testimonials</span>
+        <h2>What Clients Say</h2>
+      </div>
+      <div class="grid-3">
+        @for (t of testimonials(); track t.id) {
+          <div class="testimonial-card glass-card">
+            <div class="stars">
+              @for (s of getStars(t.rating); track s) { <span>⭐</span> }
+            </div>
+            <p class="testimonial-text">"{{ t.content }}"</p>
+            <div class="testimonial-author">
+              @if (t.clientImageUrl) {
+                <img [src]="t.clientImageUrl" [alt]="t.clientName" class="author-avatar" />
+              } @else {
+                <div class="author-avatar-placeholder">{{ t.clientName[0] }}</div>
+              }
+              <div>
+                <strong>{{ t.clientName }}</strong>
+                <span>{{ t.clientTitle }}, {{ t.clientCompany }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<!-- ─── CTA ───────────────────────────────────────────────────────────────── -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-card glass-card">
+      <h2>Ready to Work Together?</h2>
+      <p>Let's build something amazing. I'm available for freelance projects and full-time opportunities.</p>
+      <div class="cta-actions">
+        <a routerLink="/contact" class="btn-primary">Get In Touch</a>
+        <a routerLink="/about" class="btn-outline">Learn More About Me</a>
+      </div>
+    </div>
+  </div>
+</section>

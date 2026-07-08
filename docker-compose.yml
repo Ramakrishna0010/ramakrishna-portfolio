@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  # ─── SQL Server ─────────────────────────────────────────────────────────────
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: portfolio_sqlserver
+    environment:
+      SA_PASSWORD: "Portfolio@123!"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - portfolio_net
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Portfolio@123!", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ─── Backend API ─────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: src/PortfolioApp.API/Dockerfile
+    container_name: portfolio_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=PortfolioDb;User Id=sa;Password=Portfolio@123!;TrustServerCertificate=True
+      - Jwt__Key=YourSuperSecretKeyThatIsAtLeast32CharactersLong!@#$
+      - Jwt__Issuer=PortfolioApp
+      - Jwt__Audience=PortfolioAppUsers
+      - AllowedOrigins__Angular=http://localhost:4200
+      - AllowedOrigins__Production=http://frontend
+    ports:
+      - "5000:8080"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - portfolio_net
+
+  # ─── Frontend ────────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: portfolio-frontend
+      dockerfile: Dockerfile
+    container_name: portfolio_frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+    networks:
+      - portfolio_net
+
+volumes:
+  sqlserver_data:
+
+networks:
+  portfolio_net:
+    driver: bridge

@@ -1,0 +1,42 @@
+.admin-page { max-width: 900px; }
+
+.page-header {
+  margin-bottom: 2rem;
+  h2 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+  p { color: var(--text-muted); }
+}
+
+.alert-success {
+  background: rgba(67, 233, 123, 0.1);
+  border: 1px solid rgba(67, 233, 123, 0.3);
+  color: #43e97b;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+}
+
+.alert-error {
+  background: rgba(245, 87, 108, 0.1);
+  border: 1px solid rgba(245, 87, 108, 0.3);
+  color: #f5576c;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.5rem;
+}
+
+.admin-form { padding: 2rem; }
+
+.form-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+  &:last-of-type { border-bottom: none; }
+  h3 { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.5rem; }
+}
+
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; @media (max-width: 600px) { grid-template-columns: 1fr; } }
+.form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; @media (max-width: 600px) { grid-template-columns: 1fr; } }
+
+.checkbox-group label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; input[type="checkbox"] { width: auto; } }
+
+.form-actions { display: flex; gap: 1rem; padding-top: 1rem; }

@@ -1,0 +1,46 @@
+<div class="admin-wrapper" [class.sidebar-collapsed]="!sidebarOpen()">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <span class="brand-icon">⚡</span>
+      @if (sidebarOpen()) { <span class="brand-text">Portfolio Admin</span> }
+    </div>
+    <nav class="sidebar-nav">
+      @for (item of navItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active" class="nav-item">
+          <span class="nav-icon">{{ item.icon }}</span>
+          @if (sidebarOpen()) { <span class="nav-label">{{ item.label }}</span> }
+        </a>
+      }
+    </nav>
+    <div class="sidebar-footer">
+      <a routerLink="/" class="nav-item">
+        <span class="nav-icon">🌐</span>
+        @if (sidebarOpen()) { <span class="nav-label">View Site</span> }
+      </a>
+      <button class="nav-item logout-btn" (click)="auth.logout()">
+        <span class="nav-icon">🚪</span>
+        @if (sidebarOpen()) { <span class="nav-label">Logout</span> }
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="admin-main">
+    <header class="admin-header">
+      <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+      <div class="header-right">
+        <button class="theme-btn" (click)="themeService.toggleTheme()">
+          {{ themeService.isDarkMode() ? '☀️' : '🌙' }}
+        </button>
+        <div class="user-info">
+          <span class="user-name">{{ auth.currentUser()?.fullName }}</span>
+          <span class="user-role">{{ auth.currentUser()?.role }}</span>
+        </div>
+      </div>
+    </header>
+    <main class="admin-content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

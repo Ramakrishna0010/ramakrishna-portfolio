@@ -1,0 +1,105 @@
+<div class="admin-page">
+  <div class="page-header-row">
+    <div>
+      <h2>Skills</h2>
+      <p>Manage your technical skills</p>
+    </div>
+    <button class="btn-primary" (click)="openCreate()">+ Add Skill</button>
+  </div>
+
+  @if (saved()) { <div class="alert-success">✅ Saved!</div> }
+
+  @if (showForm()) {
+    <div class="form-panel glass-card">
+      <h3>{{ editingId() ? 'Edit Skill' : 'Add Skill' }}</h3>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Skill Name *</label>
+            <input type="text" formControlName="name" />
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select formControlName="category">
+              @for (cat of categories; track cat.value) {
+                <option [value]="cat.value">{{ cat.label }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="form-row-3">
+          <div class="form-group">
+            <label>Proficiency % *</label>
+            <input type="number" formControlName="percentage" min="0" max="100" />
+          </div>
+          <div class="form-group">
+            <label>Years of Experience</label>
+            <input type="number" formControlName="yearsOfExperience" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Display Order</label>
+            <input type="number" formControlName="displayOrder" />
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Icon Class (e.g. fab fa-angular)</label>
+            <input type="text" formControlName="iconClass" />
+          </div>
+          <div class="form-group">
+            <label>Color (hex)</label>
+            <input type="text" formControlName="color" placeholder="#667eea" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="description" rows="2"></textarea>
+        </div>
+        <div class="form-group checkbox-group">
+          <label><input type="checkbox" formControlName="isFeatured" /> Featured</label>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="loading()">{{ loading() ? 'Saving...' : 'Save' }}</button>
+          <button type="button" class="btn-ghost" (click)="showForm.set(false)">Cancel</button>
+        </div>
+      </form>
+    </div>
+  }
+
+  <div class="table-wrapper glass-card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Proficiency</th>
+          <th>Featured</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (skill of skills(); track skill.id) {
+          <tr>
+            <td>{{ skill.name }}</td>
+            <td><span class="badge badge-primary">{{ getCategoryLabel(skill.category) }}</span></td>
+            <td>
+              <div class="inline-progress">
+                <div class="progress-bar" style="width:120px">
+                  <div class="progress-fill" [style.width]="skill.percentage + '%'"></div>
+                </div>
+                <span>{{ skill.percentage }}%</span>
+              </div>
+            </td>
+            <td>{{ skill.isFeatured ? '⭐' : '—' }}</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn-ghost" (click)="openEdit(skill)">✏️ Edit</button>
+                <button class="btn-ghost danger" (click)="delete(skill.id)">🗑️ Delete</button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

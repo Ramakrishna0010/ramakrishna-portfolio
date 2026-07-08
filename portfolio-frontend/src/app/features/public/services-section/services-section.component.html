@@ -1,0 +1,31 @@
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Services</span>
+      <h2>What I Offer</h2>
+      <p>Professional services tailored to your needs</p>
+    </div>
+    <div class="services-grid">
+      @for (svc of services(); track svc.id) {
+        <div class="service-card glass-card" [style.border-top-color]="svc.color || 'var(--accent-primary)'">
+          <div class="svc-icon" [style.background]="svc.color ? svc.color + '20' : 'rgba(102,126,234,0.1)'">
+            @if (svc.iconClass) {
+              <i [class]="svc.iconClass"></i>
+            } @else {
+              <span>⚙️</span>
+            }
+          </div>
+          <h3>{{ svc.title }}</h3>
+          <p>{{ svc.shortDescription || svc.description }}</p>
+          @if (svc.startingPrice) {
+            <div class="price">{{ getPriceLabel(svc) }}</div>
+          }
+          <a routerLink="/contact" class="btn-ghost contact-btn">Get Quote</a>
+        </div>
+      }
+    </div>
+    @if (services().length === 0) {
+      <div class="loading-container"><div class="spinner"></div></div>
+    }
+  </div>
+</section>

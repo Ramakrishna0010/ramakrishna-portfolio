@@ -1,0 +1,15 @@
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.csproj.AssemblyReference.cache
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.AssemblyInfoInputs.cache
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.AssemblyInfo.cs
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.csproj.CoreCompileInputs.cache
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\bin\Debug\net8.0\PortfolioApp.Application.deps.json
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\bin\Debug\net8.0\PortfolioApp.Application.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\bin\Debug\net8.0\PortfolioApp.Application.pdb
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\bin\Debug\net8.0\PortfolioApp.Domain.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\bin\Debug\net8.0\PortfolioApp.Domain.pdb
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\Portfoli.3DCA2ED4.Up2Date
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\refint\PortfolioApp.Application.dll
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\PortfolioApp.Application.pdb
+c:\Users\meramakr\OneDrive - Capgemini\Desktop\portfolio\src\PortfolioApp.Application\obj\Debug\net8.0\ref\PortfolioApp.Application.dll
